@@ -1,8 +1,19 @@
-<html>
-  <head>
-    <title>The Title</title>
-  </head>
-  <body>
-      <h1>Hello World</h1>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<img src="{{ url_for('static', filename='train.svg') }}"/>
+<div id="just-a-slider" class="dragdealer">
+	<div class="handle red-bar">
+		<span class="value"></span>%
+	</div>
+</div>
+<div class="btn-group btn-45px" data-toggle="buttons-radio">
+  <button class="btn btn-mini btn-off">Forward</button>  
+  <button class="btn btn-mini active last-child">Reverse</button>
+  <div class="selector"></div>
+</div>
+<div class="btn-group btn-45px" data-toggle="buttons-radio">
+  <button class="btn btn-mini btn-off">On</button>  
+  <button class="btn btn-mini active last-child">Off</button>
+  <div class="selector"></div>
+</div>
+{% endblock %}
