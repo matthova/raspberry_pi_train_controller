@@ -33,7 +33,8 @@ $( document ).ready(function() {
 		//start drag
 		sliding = true;
 	}
-	
+	//check the checkboxes with this
+	//$('#stopGo').is(':checked')
 	function release(event){
 		if(sliding === true){
 			// drag has ended, trigger event
@@ -41,7 +42,7 @@ $( document ).ready(function() {
 			var speed = Number($('#just-a-slider .value').text()) * 2
 			//alert($('#just-a-slider .value').text());
 
-			$.post("http://train.local",
+			$.post("http://train.local:5000",
 				{
 					hello:speed
 				}
