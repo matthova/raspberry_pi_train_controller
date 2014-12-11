@@ -38,12 +38,14 @@ $( document ).ready(function() {
 		if(sliding === true){
 			// drag has ended, trigger event
 			sliding = false;
+			var speed = Number($('#just-a-slider .value').text()) * 2
 			//alert($('#just-a-slider .value').text());
-			var request = new XMLHttpRequest();
-			request.open('POST', 'train.local:5000', true);
-			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-			request.send({"hello":100});
+
+			$.post("http://train.local:5000",
+				{
+					hello:speed
+				}
+			);
 		}
 	}
-	
 });
