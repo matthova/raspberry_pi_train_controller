@@ -41,7 +41,7 @@ $( document ).ready(function() {
 			var speed = Number($('#just-a-slider .value').text()) * 2
 			//alert($('#just-a-slider .value').text());
 
-			$.post("http://train.local:5000",
+			$.post("http://train.local",
 				{
 					hello:speed
 				}
