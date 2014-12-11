@@ -40,9 +40,9 @@ $( document ).ready(function() {
 			sliding = false;
 			//alert($('#just-a-slider .value').text());
 			var request = new XMLHttpRequest();
-			request.open('POST', 'http://192.168.3.103:5000', true);
+			request.open('POST', 'train.local:5000', true);
 			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-			request.send('{"hello":100}');
+			request.send({"hello":100});
 		}
 	}
 	
