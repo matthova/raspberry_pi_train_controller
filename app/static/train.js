@@ -8,6 +8,8 @@ $( document ).ready(function() {
 	var sliding = false; // variable toggled when slider is moved
 	var everything = document.body; // the entire page
 	var elements = everything.getElementsByClassName("trainControl"); // all slider elements
+	var directionButton = $('#direction');
+	var direction = false;
 	
 	// add event to when the slider is clicked
 	// trigger event upon release
@@ -38,15 +40,34 @@ $( document ).ready(function() {
 	function release(event){
 		if(sliding === true){
 			// drag has ended, trigger event
+			updateHardware();
 			sliding = false;
-			var speed = Number($('#just-a-slider .value').text()) * 2
-			//alert($('#just-a-slider .value').text());
-
-			$.post("http://train.local:5000",
-				{
-					hello:speed
-				}
-			);
 		}
 	}
+	
+	function updateHardware(){
+		var speed = Number($('#just-a-slider .value').text()) * 2
+		var theDirection = Number(direction);
+		$.post("http://train.local:5000",
+			{
+				hello:speed,
+				direction:theDirection
+			}
+		);
+	}
+	
+	function toggleDirection(){
+		if(direction){
+			directionButton.removeClass("forward");
+			directionButton.addClass("reverse");
+		}else{
+			directionButton.removeClass("reverse");
+			directionButton.addClass("forward");
+		}
+		direction = !direction;
+		updateHardware();
+	}
+	
+	directionButton.click(toggleDirection);
+	updateHardware();
 });
