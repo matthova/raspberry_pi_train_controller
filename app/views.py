@@ -13,7 +13,7 @@ def index():
 @app.route('/', methods=['POST'])
 def form():
 	try:
-		speed = request.form["hello"]
+		speed = request.form["speed"]
 		os.system('echo "%s=%s" > /dev/pi-blaster' % (speed_pin, speed))
 		if int(request.form["direction"]) == 1:
 			os.system('echo "%s=1" > /dev/pi-blaster' % (forward_pin))
@@ -24,6 +24,5 @@ def form():
 	except Exception:
 		print 'Speed and Direction update error'
 
-	print request.form["hello"]
 	return "Hello"
 
