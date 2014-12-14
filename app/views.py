@@ -1,20 +1,10 @@
 from flask import render_template, request
 from app import app
+import os
 
-forward_pin = 7
-reverse_pin = 8
-speed_pin = 17
-try:
-	import RPIO
-	from RPIO import PWM
-	
-	RPIO.setup(forward_pin, RPIO.OUT)
-	RPIO.setup(reverse_pin, RPIO.OUT)
-	RPIO.output(forward_pin, False)
-	RPIO.output(reverse_pin, False)
-
-except Exception:
-	print 'No RPIO available mmk'
+forward_pin = 23
+reverse_pin = 24
+speed_pin = 25
 
 @app.route('/', methods=['GET'])
 def index():
@@ -23,16 +13,16 @@ def index():
 @app.route('/', methods=['POST'])
 def form():
 	try:
-		PWM.add_channel_pulse(0, speed_pin, 0, int(request.form["hello"]))
-		print request.form["direction"]
+		speed = request.form["hello"]
+		os.system('echo "%s=%s" > /dev/pi-blaster' % (speed_pin, speed))
 		if int(request.form["direction"]) == 1:
-			RPIO.output(forward_pin, True)
-			RPIO.output(reverse_pin, False)
+			os.system('echo "%s=1" > /dev/pi-blaster' % (forward_pin))
+			os.system('echo "%s=0" > /dev/pi-blaster' % (reverse_pin))
 		else:
-			RPIO.output(forward_pin, False)
-			RPIO.output(reverse_pin, True)
+			os.system('echo "%s=0" > /dev/pi-blaster' % (forward_pin))
+			os.system('echo "%s=1" > /dev/pi-blaster' % (reverse_pin))
 	except Exception:
-		print 'No RPIO available'
+		print 'Speed and Direction update error'
 
 	print request.form["hello"]
 	return "Hello"

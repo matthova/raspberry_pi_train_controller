@@ -18,10 +18,12 @@ $( document ).ready(function() {
 			//mobile events
 			elements[i].addEventListener('touchstart', tap);
 			elements[i].addEventListener('touchend', release);
+			elements[i].addEventListener('drag', drag);
 		}else{
 			//desktop events
 			elements[i].addEventListener('mousedown', tap);
 			elements[i].addEventListener('mouseup', release);
+			elements[i].addEventListener('mousemove', drag);
 		}
 	}
 	
@@ -45,8 +47,26 @@ $( document ).ready(function() {
 		}
 	}
 	
+	function drag(event){
+		updateHardware();
+	}
+
+	setInterval(function(){
+		if(sliding){
+			updateHardware();
+		}
+	},500);
+
 	function updateHardware(){
-		var speed = Number($('#just-a-slider .value').text()) * 2
+		var speedJQ = Number($('#just-a-slider .value').text())
+		var speed;
+		if(speedJQ === 0){
+			speed = 0;
+		}
+		else{
+			speed = speedJQ / 200 + .5;
+		}
+
 		var theDirection = Number(direction);
 		$.post("http://train.local:5000",
 			{
