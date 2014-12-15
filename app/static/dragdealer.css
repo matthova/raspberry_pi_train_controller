@@ -146,4 +146,9 @@
     -webkit-transform: skew(144deg);
     transform: skew(144deg);
   }
+
+  .jtc{
+    width:115px;
+    padding-top:5px;
+  }
 }
