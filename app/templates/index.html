@@ -1,11 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 <div id="everything">
-	<div id="just-a-slider" style="height:400px; width:100px;" class="trainControl dragdealer">
-		<div class="trainControl handle red-bar">
-			<span class="trainControl value"></span>%
+	<div class="row" style="max-width: 400px; background-color: #cbd2d8; padding: 20px;height: 462px;">
+		<div class="bolt-top-left">
 		</div>
+		<div class="bolt-top-right">
+		</div>
+	  <div class="large-10 small-10 columns" style="background-color: #858c90; height:400px;">
+
+			<div class="row">
+			  <div class="large-10 small-10 columns">
+					<img class="logo" src="{{ url_for('static', filename='logo.png') }}">
+				</div>
+			  <div class="large-2 small-2 columns" style="padding: 0px;">
+					<img class="speed" src="{{ url_for('static', filename='speed.png') }}">
+				</div>
+			</div>
+
+		</div>
+	  <div class="large-2 small-2 columns">
+			<div id="just-a-slider" class="trainControl dragdealer">
+				<div class="trainControl handle red-bar">
+					<span class="trainControl value"></span>%
+					<div class="circle">
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="bolt-bottom-left"></div>
+		<div class="bolt-bottom-right"></div>
 	</div>
-	<input id="direction" class="forward" type="button"><br>
 </div>
+
+<input id="direction" class="forward" type="button"><br>
 {% endblock %}
