@@ -3,27 +3,30 @@ $( document ).ready(function() {
 		slide:false,
 		vertical:true,
 		horizontal:false,
-		y:.5,
+		y:1,
 		animationCallback: function(x, y) {
 			$('#just-a-slider .value').text(scaleY(y));
 		}
 	});
 
 	function scaleY(y){
-		if(y < .4){
-        		return 100 - Math.round(y / 0.004);
-    		}
-		else if(y < .6){
-			return 0;
-		}
-		else{
-			return - Math.round((y - .6) / 0.004);
-		}
+		// if(y < .4){
+		//         		return 100 - Math.round(y / 0.004);
+		//     		}
+		// else if(y < .6){
+		// 	return 0;
+		// }
+		// else{
+		// 	return - Math.round((y - .6) / 0.004);
+		// }
+		return 100 - Math.round(y * 100);
 	}
 
 	var sliding = false; // variable toggled when slider is moved
 	var everything = document.body; // the entire page
 	var elements = everything.getElementsByClassName("trainControl"); // all slider elements
+	var directionButton = $('#direction');
+	var direction = false;
 	
 	// add event to when the slider is clicked
 	// trigger event upon release
@@ -72,25 +75,33 @@ $( document ).ready(function() {
 		var speedJQ = Number($('#just-a-slider .value').text())
 		var speed = Math.abs(speedJQ) / 100;
 		if(speedJQ === 0){
-			direction = 0;
 			speed = 0;
 		}
-		else if(speedJQ < 0){
-			direction = 1;
-			speed = speed / 2 + .5;
-		}
 		else{
-			direction = 0;
 			speed = speed / 2 + .5;
 		}
 
-		var theDirection = Number(direction);
-		//$.post("http://train.local:5000",
 		$.post("http://192.168.1.104:5000",
 			{
 				speed:speed,
-				direction:direction
+				direction:Number(direction)
 			}
 		);
 	}
+	
+	function toggleDirection(){
+		if(direction){
+			directionButton.removeClass("forward");
+			directionButton.addClass("reverse");
+		}else{
+			directionButton.removeClass("reverse");
+			directionButton.addClass("forward");
+		}
+		direction = !direction;
+		console.log('direction ', direction);
+		updateHardware();
+	}
+	
+	directionButton.click(toggleDirection);
+	
 });

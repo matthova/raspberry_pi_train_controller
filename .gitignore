@@ -1,2 +1,4 @@
 .DS_Store
 flask/
+app/__init__.pyc
+app/views.pyc
