@@ -81,7 +81,7 @@ $( document ).ready(function() {
 			speed = speed / 2 + .5;
 		}
 
-		$.post("http://192.168.1.104:5000",
+		$.post("http://192.168.1.81:5000",
 			{
 				speed:speed,
 				direction:Number(direction)
