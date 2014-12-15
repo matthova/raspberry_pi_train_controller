@@ -1,20 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 <div id="everything">
-	<div class="row" style="max-width: 400px; background-color: #cbd2d8; padding: 20px;height: 462px;">
+	<div class="row" style="max-width: 400px; background-color: #cbd2d8; padding: 20px;height: 390px;">
 		<div class="bolt-top-left">
 		</div>
 		<div class="bolt-top-right">
 		</div>
-	  <div class="large-10 small-10 columns" style="background-color: #858c90; height:400px;">
+	  <div class="large-10 small-10 columns" style="background-color: #858c90; height:330px;">
 
 			<div class="row">
 			  <div class="large-10 small-10 columns">
-					<img class="logo" src="{{ url_for('static', filename='logo.png') }}">
+					<img class="logo" src="{{ url_for('static', filename='logo.png') }}" >
+					<img class="jtc" src="{{ url_for('static', filename='controller.png') }}" >
+					<img class="direction" src="{{ url_for('static', filename='direction.png') }}" >
+					<div class="forward-toggle"></div>
+					<div class="reverse-toggle hide"></div>
 				</div>
 			  <div class="large-2 small-2 columns" style="padding: 0px;">
-					<img class="speed" src="{{ url_for('static', filename='speed.png') }}">
+					<div class="speed-click">
+						<img class="speed" src="{{ url_for('static', filename='speed.png') }}">
+					</div>
 				</div>
+
 			</div>
 
 		</div>
@@ -32,5 +39,5 @@
 	</div>
 </div>
 
-<input id="direction" class="forward" type="button"><br>
+<input id="direction" class="forward" type="button" style="display:none;"><br>
 {% endblock %}

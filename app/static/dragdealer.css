@@ -9,7 +9,7 @@
 .dragdealer {
   position: relative;
   background: #d0695e;
-  height:400px;
+  height:330px;
   width:50px;
   position:relative;
   left: -15px;
@@ -51,13 +51,20 @@
   margin-top: -15px;
 }
 
+.jtc{
+  position: relative;
+  top: -46px;
+  margin-left: 10px;
+  max-width: 140px;
+}
+
 .bolt-bottom-left{
   background-color: #858c90;
   height: 10px;
   width: 10px;
   border-radius: 20px;
   position: relative;
-  top: 407px;
+  top: 337px;
 }
 
 .bolt-bottom-right{
@@ -80,14 +87,63 @@
   top: -39px;
   right: -37px;
 }
+
 .speed{
   padding: 2px;
   position: relative;
-  top: 15px;
-  height: 373px;
+  top: 21px;
+  height: 290px;
+}
+
+.forward-toggle{
+  position: relative;
+  top: 9px;
+  left: 30px;
+  height: 18px;
+  width: 28px;
+  background-color: black;
+  -webkit-transform: skew(144deg);
+  transform: skew(144deg);
+}
+.reverse-toggle{
+  position: relative;
+  top: 9px;
+  left: 66px;
+  height: 18px;
+  width: 28px;
+  background-color: black;
+  -webkit-transform: skew(144deg);
+  transform: skew(215deg);
+}
+
+.hide{
+  display:none;
+}
+.direction{
+  margin-top: 100px;
+  max-width: 127px;
 }
 
 .logo{
   width: 100%;
   max-width: 160px;
+}
+
+
+@media screen and (device-aspect-ratio: 40/71) {
+  .direction{
+    margin-top: 120px;
+    max-width: 127px;
+  }
+
+  .forward-toggle{
+    position: relative;
+    top: 11px;
+    left: 30px;
+    height: 18px;
+    width: 28px;
+    background-color: black;
+    -webkit-transform: skew(144deg);
+    transform: skew(144deg);
+  }
 }

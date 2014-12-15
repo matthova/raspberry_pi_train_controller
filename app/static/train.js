@@ -1,4 +1,4 @@
-$( document ).ready(function() {	
+$( document ).ready(function() {
 	new Dragdealer('just-a-slider', {
 		slide:false,
 		vertical:true,
@@ -7,6 +7,24 @@ $( document ).ready(function() {
 		animationCallback: function(x, y) {
 			$('#just-a-slider .value').text(scaleY(y));
 		}
+	});
+
+  $( ".direction" ).click(function() {
+  	$('.forward-toggle').toggleClass('hide');
+		$('.reverse-toggle').toggleClass('hide');
+		$("#direction").trigger('click');
+	});
+
+	$( ".forward-toggle" ).click(function() {
+		$('.forward-toggle').toggleClass('hide');
+		$('.reverse-toggle').toggleClass('hide');
+		$("#direction").trigger('click');
+	});
+
+	$( ".reverse-toggle" ).click(function() {
+		$('.forward-toggle').toggleClass('hide');
+		$('.reverse-toggle').toggleClass('hide');
+		$("#direction").trigger('click');
 	});
 
 	function scaleY(y){
@@ -27,10 +45,10 @@ $( document ).ready(function() {
 	var elements = everything.getElementsByClassName("trainControl"); // all slider elements
 	var directionButton = $('#direction');
 	var direction = false;
-	
+
 	// add event to when the slider is clicked
 	// trigger event upon release
-	for(i=0; i < elements.length; i++){ 
+	for(i=0; i < elements.length; i++){
 		if (typeof window.ontouchstart !== 'undefined') {
 			//mobile events
 			elements[i].addEventListener('touchstart', tap);
@@ -41,13 +59,13 @@ $( document ).ready(function() {
 			elements[i].addEventListener('mouseup', release);
 		}
 	}
-	
+
 	if (typeof window.ontouchstart !== 'undefined') {
 		everything.addEventListener('touchend', release);
 	}else{
 		everything.addEventListener('mouseup', release);
 	}
-	
+
 	function tap(event) {
 		//start drag
 		sliding = true;
@@ -60,7 +78,7 @@ $( document ).ready(function() {
 			sliding = false;
 		}
 	}
-	
+
 	function drag(event){
 		updateHardware();
 	}
@@ -88,7 +106,7 @@ $( document ).ready(function() {
 			}
 		);
 	}
-	
+
 	function toggleDirection(){
 		if(direction){
 			directionButton.removeClass("forward");
@@ -101,7 +119,7 @@ $( document ).ready(function() {
 		console.log('direction ', direction);
 		updateHardware();
 	}
-	
+
 	directionButton.click(toggleDirection);
-	
+
 });
