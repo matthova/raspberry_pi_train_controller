@@ -24,5 +24,4 @@ def form():
 	except Exception:
 		print 'Speed and Direction update error'
 
-	return "Hello"
-
+	return "success"

@@ -3,6 +3,7 @@ $( document ).ready(function() {
 		slide:false,
 		vertical:true,
 		horizontal:false,
+		y:.5,
 		animationCallback: function(x, y) {
 			$('#just-a-slider .value').text(scaleY(y));
 		}
@@ -31,12 +32,10 @@ $( document ).ready(function() {
 			//mobile events
 			elements[i].addEventListener('touchstart', tap);
 			elements[i].addEventListener('touchend', release);
-			elements[i].addEventListener('drag', drag);
 		}else{
 			//desktop events
 			elements[i].addEventListener('mousedown', tap);
 			elements[i].addEventListener('mouseup', release);
-			elements[i].addEventListener('mousemove', drag);
 		}
 	}
 	
@@ -72,16 +71,22 @@ $( document ).ready(function() {
 	function updateHardware(){
 		var speedJQ = Number($('#just-a-slider .value').text())
 		var speed = Math.abs(speedJQ) / 100;
-		if(speedJQ < 0){
+		if(speedJQ === 0){
+			direction = 0;
+			speed = 0;
+		}
+		else if(speedJQ < 0){
 			direction = 1;
+			speed = speed / 2 + .5;
 		}
 		else{
-			direction = 0
+			direction = 0;
+			speed = speed / 2 + .5;
 		}
 
 		var theDirection = Number(direction);
 		//$.post("http://train.local:5000",
-		$.post("http://192.168.3.107:5000",
+		$.post("http://192.168.1.104:5000",
 			{
 				speed:speed,
 				direction:direction
