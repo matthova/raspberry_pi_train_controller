@@ -1,4 +1,9 @@
 $( document ).ready(function() {
+
+	document.ontouchmove = function(event){
+		event.preventDefault();
+	}
+
 	new Dragdealer('just-a-slider', {
 		slide:false,
 		vertical:true,
